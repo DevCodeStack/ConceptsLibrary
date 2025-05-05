@@ -2,6 +2,8 @@ package com.devcodestack.core.concepts.streams;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /*
@@ -23,7 +25,7 @@ public class StreamConcept01 {
 //		Arrays.stream(wrapperType).forEach(System.out::println);
 //		Stream.of(wrapperType).forEach(System.out::println);
 
-		List<Integer> nums = Arrays.asList(4, 8, 0, 7, 1, 18, 13, 97, 45, 78, 36, 0, 4);
+		List<Integer> nums = Arrays.asList(4, 8, 0, 7, 1, 18, 13, 97, 45, 78, 36, 0, 4, -1, -18, -40);
 		
 		nums.stream()
 			.filter(n -> n%2 == 0)
@@ -49,6 +51,13 @@ public class StreamConcept01 {
 		.filter(n -> n%2 == 0)
 		.mapToInt(n -> n*3)
 		.sum();
+		
+//		var prnt = nums.stream().collect(Collectors.groupingBy(n -> n < 0 ? "Negative" : n == 0 ? "Zero" : "Positive", 
+//				Collectors.counting()));
+//		System.out.println(prnt);
+		
+//		System.out.println(nums.stream().collect(Collectors.groupingBy(n -> n==0))); //provides same result when using partioningBy
+		
 		
 	}
 

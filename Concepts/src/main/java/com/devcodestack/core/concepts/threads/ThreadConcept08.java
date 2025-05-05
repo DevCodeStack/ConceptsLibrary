@@ -21,7 +21,7 @@ public class ThreadConcept08 {
 			System.out.println("thunderbird turned on...");
 			
 			try {
-				threadBullet.join();
+				threadBullet.join(); //Added to resolve deadlock
 			} catch (InterruptedException e) {
 				System.out.println("threadBullet join interrupted...");
 			}

@@ -31,8 +31,8 @@ public class StreamConcept02 {
 //		System.out.println("groupByCategoryAndCounting: " + groupByCategoryAndCounting);
 		
 		/* Total cost of products per Category */
-//		var aggregateByCategoryAndSummingPrice = products.collect(Collectors.groupingBy(Product::category,
-//				Collectors.summingDouble(Product::price)));
+		var aggregateByCategoryAndSummingPrice = products.collect(Collectors.groupingBy(Product::category,
+				Collectors.summingDouble(Product::price)));
 //		System.out.println("aggregateByCategoryAndSummingPrice: " + aggregateByCategoryAndSummingPrice);
 		
 		/* Average cost of products per Category */
@@ -41,9 +41,16 @@ public class StreamConcept02 {
 //		System.out.println("aggregateByCategoryAndAveragingPrice: " + aggregateByCategoryAndAveragingPrice);
 		
 		/* Partition by price */
-		var partioningByPrice = products.collect(Collectors.partitioningBy(product -> product.price>450));
-		System.out.println("partioningByPrice: " + partioningByPrice);
+//		var partioningByPrice = products.collect(Collectors.partitioningBy(product -> product.price>450));
+//		System.out.println("partioningByPrice: " + partioningByPrice);
 		
+		String res = aggregateByCategoryAndSummingPrice.entrySet().stream()
+//						.mapToDouble(e -> e.getValue())
+//						.max()
+						.max((e1, e2) -> e1.getValue().intValue() - e2.getValue().intValue())
+						.map(e -> e.getKey())
+						.orElseGet(() -> "");
+		System.out.println(res);
 	}
 
 }
